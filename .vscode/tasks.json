@@ -1,0 +1,36 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "C/C++: build",
+			"command": "/usr/bin/clang",
+      "args": [
+        "-g",
+				"${workspaceFolder}/src/*.c",
+				"-lsimple2d",
+				"-I/usr/local/include/SDL2",
+				"-D_THREAD_SAFE",
+				"-L/usr/local/lib",
+				"-lSDL2",
+				"-Wl,-framework,OpenGL",
+				"-lSDL2_image",
+				"-lSDL2_mixer",
+				"-lSDL2_ttf",
+				"-o",
+				"${workspaceFolder}/bin/tennis.out"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/lldb"
+		}
+	]
+}
