@@ -1,17 +1,18 @@
 #include <simple2d.h>
+#include "field.h"
+
+#define SCREEN_W 640
+#define SCREEN_H 480
 
 void render() {
-  S2D_DrawTriangle(
-    320,  50, 1, 0, 0, 1,
-    540, 430, 0, 1, 0, 1,
-    100, 430, 0, 0, 1, 1
-  );
+  renderField();
 }
 
 int main() {
+  initField(SCREEN_W, SCREEN_H);
 
   S2D_Window *window = S2D_CreateWindow(
-    "Hello Triangle", 640, 480, NULL, render, 0
+    "Hello Triangle", SCREEN_W, SCREEN_H, NULL, render, 0
   );
 
   S2D_Show(window);
