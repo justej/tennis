@@ -15,6 +15,8 @@ void initBall(int width, int height) {
   ball.color.r = 1;
   ball.color.g = 1;
   ball.color.b = 0;
+
+  ball.boom = S2D_CreateSound("media/boom.ogg");
 }
 
 void updateBall() {
@@ -24,12 +26,14 @@ void updateBall() {
   if ((ball.x < f->left + ball.r) || (ball.x > f->right - ball.r)) {
     ball.dx = -ball.dx;
     ball.x += ball.dx;
+    S2D_PlaySound(ball.boom);
   }
 
   ball.y += ball.dy;
   if ((ball.y < f->top + ball.r) || (ball.y > f->bottom - ball.r)) {
     ball.dy = - ball.dy;
     ball.x += ball.dy;
+    S2D_PlaySound(ball.boom);
   }
 }
 

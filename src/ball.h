@@ -8,6 +8,7 @@ typedef struct _Ball {
   int dy;
   int r;
   S2D_Color color;
+  S2D_Sound *boom;
 } Ball;
 
 void initBall(int width, int height);
