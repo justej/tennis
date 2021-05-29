@@ -5,7 +5,7 @@
 Racket initRacket(int width, int height, int x, const Field *field) {
   Racket racket;
 
-  racket.width = 10;
+  racket.width = 20;
   racket.height = 40;
   racket.x = x;
   racket.y = height / 2;
@@ -19,8 +19,8 @@ Racket initRacket(int width, int height, int x, const Field *field) {
     racket.minX = width / 2 + 1 + racket.width / 2;
     racket.maxX = field->right - 1 - racket.width / 2;
   }
-  racket.minY = field->top + 1 + racket.height / 2;
-  racket.maxY = field->bottom - 1 - racket.height / 2;
+  racket.minY = field->top + 1 + racket.height / 2 + racket.width / 2;
+  racket.maxY = field->bottom - 1 - racket.height / 2 - racket.width / 2;
 
   racket.color.a = 1;
   racket.color.r = 0;
@@ -55,6 +55,14 @@ void renderRacket(Racket *racket) {
     racket->color.r, racket->color.g, racket->color.b, racket->color.a,
     racket->color.r, racket->color.g, racket->color.b, racket->color.a,
     racket->color.r, racket->color.g, racket->color.b, racket->color.a,
+    racket->color.r, racket->color.g, racket->color.b, racket->color.a
+  );
+  S2D_DrawCircle(
+    racket->x, racket->y - racket->height / 2, racket->width / 2, 360,
+    racket->color.r, racket->color.g, racket->color.b, racket->color.a
+  );
+  S2D_DrawCircle(
+    racket->x, racket->y + racket->height / 2, racket->width / 2, 360,
     racket->color.r, racket->color.g, racket->color.b, racket->color.a
   );
 }

@@ -42,14 +42,39 @@ void updateBall(const Racket *racketLeft, const Racket *racketRight) {
       (ball.y > racketRight->y - racketRight->height / 2) && (ball.y < racketRight->y + racketRight->height / 2))) {
     ball.dx = -ball.dx;
     ball.x += ball.dx;
+    S2D_PlaySound(ball.boom);
   }
 
-  if (((ball.y > racketLeft->y - racketLeft->height / 2 - ball.r) && (ball.y < racketLeft->y + racketLeft->height / 2 + ball.r) &&
-      (ball.x > racketLeft->x - racketLeft->width / 2) && (ball.x < racketLeft->x + racketLeft->width / 2)) ||
-      ((ball.y > racketRight->y - racketRight->height / 2 - ball.r) && (ball.y < racketRight->y + racketRight->height / 2 + ball.r) &&
-      (ball.x > racketRight->x - racketRight->width / 2) && (ball.x < racketRight->x + racketRight->width / 2))) {
-    ball.dy = -ball.dy;
-    ball.y += ball.dy;
+  // Left racket
+  if ((ball.x > racketLeft->x - racketLeft->width / 2 - ball.r) && (ball.x < racketLeft->x + racketLeft->width / 2 + ball.r)) {
+    int dx = ball.x - racketLeft->x;
+    int dy1 = ball.y - (racketLeft->y - racketLeft->height / 2);
+    int dy2 = ball.y - (racketLeft->y + racketLeft->height / 2);
+    int R = ball.r + racketLeft->width / 2;
+
+    if ((dx * dx + dy1 * dy1 < R * R) || (dx * dx + dy2 * dy2 < R * R)) {
+      ball.dx = -ball.dx;
+      ball.x += ball.dx;
+      ball.dy = -ball.dy;
+      ball.y += ball.dy;
+      S2D_PlaySound(ball.boom);
+    }
+  }
+
+  // Right racket
+  if ((ball.x > racketRight->x - racketRight->width / 2 - ball.r) && (ball.x < racketRight->x + racketRight->width / 2 + ball.r)) {
+    int dx = ball.x - racketRight->x;
+    int dy1 = ball.y - (racketRight->y - racketRight->height / 2);
+    int dy2 = ball.y - (racketRight->y + racketRight->height / 2);
+    int R = ball.r + racketRight->width / 2;
+
+    if ((dx * dx + dy1 * dy1 < R * R) || (dx * dx + dy2 * dy2 < R * R)) {
+      ball.dx = -ball.dx;
+      ball.x += ball.dx;
+      ball.dy = -ball.dy;
+      ball.y += ball.dy;
+      S2D_PlaySound(ball.boom);
+    }
   }
 }
 

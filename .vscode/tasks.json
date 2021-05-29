@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "shell",
-			"label": "C/C++: build",
+			"label": "C/C++: build project",
 			"command": "/usr/bin/clang",
       "args": [
         "-g",
