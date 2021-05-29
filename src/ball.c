@@ -36,28 +36,20 @@ void updateBall(const Racket *racketLeft, const Racket *racketRight) {
     S2D_PlaySound(ball.boom);
   }
 
-  if ((ball.x > racketLeft->x - racketLeft->width / 2 - ball.r) && (ball.x < racketLeft->x + racketLeft->width / 2 + ball.r)) {
-    if ((ball.y > racketLeft->y - racketLeft->height / 2) && ball.y < racketLeft->y + racketLeft->height / 2) {
-      ball.dx = -ball.dx;
-    }
+  if (((ball.x > racketLeft->x - racketLeft->width / 2 - ball.r) && (ball.x < racketLeft->x + racketLeft->width / 2 + ball.r) &&
+      (ball.y > racketLeft->y - racketLeft->height / 2) && (ball.y < racketLeft->y + racketLeft->height / 2)) ||
+      ((ball.x > racketRight->x - racketRight->width / 2 - ball.r) && (ball.x < racketRight->x + racketRight->width / 2 + ball.r) &&
+      (ball.y > racketRight->y - racketRight->height / 2) && (ball.y < racketRight->y + racketRight->height / 2))) {
+    ball.dx = -ball.dx;
+    ball.x += ball.dx;
   }
 
-  if ((ball.y > racketLeft->y - racketLeft->height / 2 - ball.r) && (ball.y < racketLeft->y + racketLeft->height / 2 + ball.r)) {
-    if ((ball.x > racketLeft->x - racketLeft->width / 2) && ball.x < racketLeft->x + racketLeft->width / 2) {
-      ball.dy = -ball.dy;
-    }
-  }
-
-  if ((ball.x > racketRight->x - racketRight->width / 2 - ball.r) && (ball.x < racketRight->x + racketRight->width / 2 + ball.r)) {
-    if ((ball.y > racketRight->y - racketRight->height / 2) && ball.y < racketRight->y + racketRight->height / 2) {
-      ball.dx = -ball.dx;
-    }
-  }
-
-  if ((ball.y > racketRight->y - racketRight->height / 2 - ball.r) && (ball.y < racketRight->y + racketRight->height / 2 + ball.r)) {
-    if ((ball.x > racketRight->x - racketRight->width / 2) && ball.x < racketRight->x + racketRight->width / 2) {
-      ball.dy = -ball.dy;
-    }
+  if (((ball.y > racketLeft->y - racketLeft->height / 2 - ball.r) && (ball.y < racketLeft->y + racketLeft->height / 2 + ball.r) &&
+      (ball.x > racketLeft->x - racketLeft->width / 2) && (ball.x < racketLeft->x + racketLeft->width / 2)) ||
+      ((ball.y > racketRight->y - racketRight->height / 2 - ball.r) && (ball.y < racketRight->y + racketRight->height / 2 + ball.r) &&
+      (ball.x > racketRight->x - racketRight->width / 2) && (ball.x < racketRight->x + racketRight->width / 2))) {
+    ball.dy = -ball.dy;
+    ball.y += ball.dy;
   }
 }
 
