@@ -24,6 +24,11 @@ void onKey(S2D_Event e) {
         case 'D': dxLeft = DX_STEP; break;
         case 'S': dyLeft = DY_STEP; break;
         case 'W': dyLeft = -DY_STEP; break;
+
+        case 'J': dxRight = -DX_STEP; break;
+        case 'L': dxRight = DX_STEP; break;
+        case 'K': dyRight = DY_STEP; break;
+        case 'I': dyRight = -DY_STEP; break;
       }
       break;
   }
@@ -31,7 +36,7 @@ void onKey(S2D_Event e) {
 
 void update() {
   updateRacket(&racketLeft, dxLeft, dyLeft);
-  updateRacket(&racketRight, dxRight, dxRight);
+  updateRacket(&racketRight, dxRight, dyRight);
   dxLeft = 0;
   dyLeft = 0;
   dxRight = 0;
