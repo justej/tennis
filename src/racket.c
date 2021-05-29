@@ -2,15 +2,13 @@
 #include "racket.h"
 #include "field.h"
 
-Racket initRacket(int width, int height, int x) {
+Racket initRacket(int width, int height, int x, const Field *field) {
   Racket racket;
 
   racket.width = 10;
-  racket.hight = 40;
+  racket.height = 40;
   racket.x = x;
   racket.y = height / 2;
-
-  Field *field = getField();
 
   if (x < width / 2) {
     // Left racket
@@ -21,8 +19,8 @@ Racket initRacket(int width, int height, int x) {
     racket.minX = width / 2 + 1 + racket.width / 2;
     racket.maxX = field->right - 1 - racket.width / 2;
   }
-  racket.minY = field->top + 1 + racket.width / 2;
-  racket.maxY = field->bottom - 1 - racket.width / 2;
+  racket.minY = field->top + 1 + racket.height / 2;
+  racket.maxY = field->bottom - 1 - racket.height / 2;
 
   racket.color.a = 1;
   racket.color.r = 0;
@@ -52,7 +50,7 @@ void updateRacket(Racket *racket, int dx, int dy) {
 
 void renderRacket(Racket *racket) {
   S2D_DrawLine(
-    racket->x, racket->y - racket->hight / 2, racket->x, racket->y + racket->hight / 2,
+    racket->x, racket->y - racket->height / 2, racket->x, racket->y + racket->height / 2,
     racket->width,
     racket->color.r, racket->color.g, racket->color.b, racket->color.a,
     racket->color.r, racket->color.g, racket->color.b, racket->color.a,

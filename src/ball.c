@@ -19,7 +19,7 @@ void initBall(int width, int height) {
   ball.boom = S2D_CreateSound("media/boom.ogg");
 }
 
-void updateBall() {
+void updateBall(const Racket *racketLeft, const Racket *racketRight) {
   const Field *const f = getField();
 
   ball.x += ball.dx;
@@ -34,6 +34,30 @@ void updateBall() {
     ball.dy = - ball.dy;
     ball.x += ball.dy;
     S2D_PlaySound(ball.boom);
+  }
+
+  if ((ball.x > racketLeft->x - racketLeft->width / 2 - ball.r) && (ball.x < racketLeft->x + racketLeft->width / 2 + ball.r)) {
+    if ((ball.y > racketLeft->y - racketLeft->height / 2) && ball.y < racketLeft->y + racketLeft->height / 2) {
+      ball.dx = -ball.dx;
+    }
+  }
+
+  if ((ball.y > racketLeft->y - racketLeft->height / 2 - ball.r) && (ball.y < racketLeft->y + racketLeft->height / 2 + ball.r)) {
+    if ((ball.x > racketLeft->x - racketLeft->width / 2) && ball.x < racketLeft->x + racketLeft->width / 2) {
+      ball.dy = -ball.dy;
+    }
+  }
+
+  if ((ball.x > racketRight->x - racketRight->width / 2 - ball.r) && (ball.x < racketRight->x + racketRight->width / 2 + ball.r)) {
+    if ((ball.y > racketRight->y - racketRight->height / 2) && ball.y < racketRight->y + racketRight->height / 2) {
+      ball.dx = -ball.dx;
+    }
+  }
+
+  if ((ball.y > racketRight->y - racketRight->height / 2 - ball.r) && (ball.y < racketRight->y + racketRight->height / 2 + ball.r)) {
+    if ((ball.x > racketRight->x - racketRight->width / 2) && ball.x < racketRight->x + racketRight->width / 2) {
+      ball.dy = -ball.dy;
+    }
   }
 }
 

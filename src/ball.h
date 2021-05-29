@@ -1,6 +1,8 @@
 #ifndef _BALL_H_
 #define _BALL_H_
 
+#include "racket.h"
+
 typedef struct _Ball {
   int x;
   int y;
@@ -13,7 +15,7 @@ typedef struct _Ball {
 
 void initBall(int width, int height);
 Ball *getBall();
-void updateBall();
+void updateBall(const Racket *racketLeft, const Racket *racketRight);
 void renderBall();
 
 #endif

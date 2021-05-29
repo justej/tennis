@@ -1,11 +1,13 @@
 #ifndef _RACKET_H_
 #define _RACKET_H_
 
+#include "field.h"
+
 typedef struct _Racket {
   int x;
   int y;
   int width;
-  int hight;
+  int height;
   int minX;
   int maxX;
   int minY;
@@ -13,7 +15,7 @@ typedef struct _Racket {
   S2D_Color color;
 } Racket;
 
-Racket initRacket(int width, int height, int x);
+Racket initRacket(int width, int height, int x, const Field *field);
 void updateRacket();
 void renderRacket();
 
